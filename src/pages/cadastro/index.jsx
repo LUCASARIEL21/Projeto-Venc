@@ -1,43 +1,49 @@
-import React, { useState } from "react"
-import * as C from "./styles"
-import { Link, useNavigate } from "react-router-dom"
-import useAuth from "../../hooks/useAuth"
-import Logo from "../../assets/logo_venc.svg"
+import React, { useState } from "react";
+import * as C from "./styles";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../../assets/logo_venc.svg";
+import { registerUser } from "../../services/user";
 
 const Cadastro = () => {
-  const [email, setEmail] = useState("")
-  const [emailConf, setEmailConf] = useState("")
-  const [senha, setSenha] = useState("")
-  const [error, setError] = useState("")
-  const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [emailConf, setEmailConf] = useState("");
+  const [senha, setSenha] = useState("");
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const { cadastro } = useAuth()
-
-  const handleSignup = () => {
-    if (!email | !emailConf | !senha) {
-      setError("Preencha todos os campos")
-      return
+  const handleSignup = async () => {
+    if (!email | !emailConf | !senha | !name) {
+      setError("Preencha todos os campos");
+      return;
     } else if (email !== emailConf) {
-      setError("Os e-mails não são iguais")
-      return
+      setError("Os e-mails não são iguais");
+      return;
     }
 
-    const res = cadastro(email, senha)
-
-    if (res) {
-      setError(res)
-      return
+    try {
+      await registerUser({ email, password: senha, name });
+      window.alert("Usuário cadatrado com sucesso!");
+      navigate("/");
+    } catch (error) {
+      if (error?.response?.status == 400) {
+        setError("Usuário já existe");
+      }
     }
-
-    alert("Usuário cadatrado com sucesso!")
-    navigate("/")
   };
 
   return (
     <C.Container>
       <C.Content>
-        <C.Logo src={Logo}/>
+        <C.Logo src={Logo} />
         <C.txtconta>Criar conta</C.txtconta>
+        <C.txtemail>Nome</C.txtemail>
+        <C.Input
+          type="text"
+          placeholder="Digite seu Nome"
+          value={name}
+          onChange={(e) => [setName(e.target.value), setError("")]}
+        />
         <C.txtemail>Email</C.txtemail>
         <C.Input
           type="email"
@@ -60,7 +66,9 @@ const Cadastro = () => {
           onChange={(e) => [setSenha(e.target.value), setError("")]}
         />
         <C.labelError>{error}</C.labelError>
-        <C.Button type="button" Text="Inscrever-se" onClick={handleSignup}>Inscrever-se</C.Button>
+        <C.Button type="button" Text="Inscrever-se" onClick={handleSignup}>
+          Inscrever-se
+        </C.Button>
         <C.LabelSignin>
           Já tem uma conta?
           <C.Strong>
@@ -69,7 +77,7 @@ const Cadastro = () => {
         </C.LabelSignin>
       </C.Content>
     </C.Container>
-  )
-}
+  );
+};
 
 export default Cadastro;

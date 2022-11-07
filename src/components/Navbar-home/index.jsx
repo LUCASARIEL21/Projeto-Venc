@@ -11,7 +11,6 @@ import Anuncio from "../Anuncio";
 import * as S from "./styles";
 
 export const Navbar = () => {
-  const { deslogar } = useAuth();
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
@@ -22,6 +21,10 @@ export const Navbar = () => {
   };
   const hideDrop = () => {
     setIsOpen(false);
+  };
+
+  const deslogar = () => {
+    localStorage.removeItem("userToken");
   };
 
   return (
