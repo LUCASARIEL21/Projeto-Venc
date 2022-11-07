@@ -1,12 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { HashLink } from 'react-router-hash-link';
-
 import Logo from "../../assets/logo_venc.svg";
 import User from "../../assets/user.svg";
-import useAuth from "../../hooks/useAuth";
-
 import * as S from "./styles";
 import Anuncio from "../Anuncio";
 
@@ -27,6 +23,7 @@ export const NavbarM = () => {
 
   const deslogar = () => {
     localStorage.removeItem("userToken");
+    localStorage.removeItem("userData");
   };
 
   return (

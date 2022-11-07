@@ -1,7 +1,6 @@
 import { useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 
 import Logo from "../../assets/logo_venc.svg";
 import User from "../../assets/user.svg";
@@ -25,6 +24,7 @@ export const Navbar = () => {
 
   const deslogar = () => {
     localStorage.removeItem("userToken");
+    localStorage.removeItem("userData");
   };
 
   return (

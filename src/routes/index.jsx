@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import Cadastro from "../pages/cadastro";

@@ -8,6 +8,11 @@ export const authenticate = async ({ email, password }) => {
   return response.data;
 };
 
+export const getUserData = async () => {
+  const response = await userApiClient.get("/user/self");
+  return response.data;
+};
+
 export const registerUser = async ({ email, password, name }) => {
   const response = await userApiClient.post("/user/register", {
     name,

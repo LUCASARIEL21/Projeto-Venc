@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import Logo from "../../assets/logo_venc.svg";
-import { authenticate } from "../../services/user";
+import { authenticate, getUserData } from "../../services/user";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,11 +20,14 @@ const Login = () => {
     try {
       const token = await authenticate({ email, password });
       localStorage.setItem("userToken", JSON.stringify(token));
+      const userData = await getUserData();
+      localStorage.setItem("userData", JSON.stringify(userData));
       navigate("/home");
     } catch (error) {
       if (error?.response?.status == 400) {
-        setError("Usuário ou senha incorreto");
+        return setError("Usuário ou senha incorreto");
       }
+      setError("Ocorreu algum erro");
     }
   };
 
