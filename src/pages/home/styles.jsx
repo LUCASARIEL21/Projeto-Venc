@@ -1,56 +1,51 @@
 import styled from "styled-components";
 
 export const page = styled.div`
-  margin: 0;
-  padding: 0;
+  position: fixed;
+  left: 0px;
+  top: 0px;
   background: #dddd;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
 `;
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 70%;
-  width: 100%;
 `;
 
 export const divleft = styled.div`
-  display: flex;
-  margin-top: 50px;
-  margin-left: 100px;
-  align-items: initial;
-  justify-content: center;
-  height: 100%;
-  width: 30%;
+  position: fixed;
+  left: 20px;
+  top: 150px;
+  min-width: "300px";
 `;
 
 export const divright = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
-  margin-right: 100px;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 70%;
+  min-width: 600px;
+  right: 30px;
+  top: 0px;
+  left: 340px;
 `;
 
 export const divra = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 20%;
   width: 100%;
 `;
 
 export const divresult = styled.div`
-  height: 25px;
-  width: 80px;
-  margin-left: 50px;
-  color: #c3c3c3;
+  color: #000;
 `;
 
 export const divorder = styled.div`

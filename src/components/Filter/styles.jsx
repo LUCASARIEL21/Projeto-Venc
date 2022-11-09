@@ -5,12 +5,11 @@ export const container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: baseline;
-  width: 400px;
-  height: 400px;
-  max-width: 800px;
-  max-height: 800px;
+  width: 300px;
+  overflow: auto;
+  max-height: 700px;
   background-color: white;
-  gap: 5px;
+  gap: 10px;
   border-radius: 5px;
 `;
 

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 0;
-  padding: 0;
+  position: fixed;
+  left: 0px;
+  top: 0px;
   background: #dddd;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
 `;

@@ -55,7 +55,7 @@ export const divdrop = styled.div`
 
 export const divmenu = styled.div`
   height: 2rem;
-  width: 8rem;
+  width: 9rem;
   display: flex;
   align-items: center;
   text-align: center;
@@ -90,8 +90,8 @@ export const list = styled.ul`
   font-weight: 600;
   list-style-type: none;
   position: absolute;
-  padding: 0.2em 0.5em;
-  bottom: -4rem;
+  padding: 0.5em 0.5em;
+  bottom: -3.6rem;
   border: 1px solid transparent;
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
   border-radius: 0.5em;

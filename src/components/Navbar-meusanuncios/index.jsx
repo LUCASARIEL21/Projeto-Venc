@@ -6,7 +6,7 @@ import User from "../../assets/user.svg";
 import * as S from "./styles";
 import Anuncio from "../Anuncio";
 
-export const NavbarM = () => {
+export const NavbarM = ({ handleGetUserAdverts }) => {
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
@@ -29,7 +29,12 @@ export const NavbarM = () => {
   return (
     <S.header>
       <S.divimg>
-        <S.logo src={Logo} alt="logo" />
+        <S.logo
+          src={Logo}
+          alt="logo"
+          onClick={() => [navigate("/home")]}
+          style={{ cursor: "pointer" }}
+        />
       </S.divimg>
       <S.divrigth>
         <S.txt>Meus Anúncios</S.txt>
@@ -40,7 +45,12 @@ export const NavbarM = () => {
             <S.caret></S.caret>
             {isOpen ? (
               <S.list onMouseEnter={showDrop}>
-                <li onClick={() => [navigate("/home")]}>Home</li>
+                <li
+                  style={{ marginBottom: 5 }}
+                  onClick={() => [navigate("/home")]}
+                >
+                  Home
+                </li>
                 <li onClick={() => [deslogar(), navigate("/")]}>Sair</li>
               </S.list>
             ) : null}
@@ -53,7 +63,13 @@ export const NavbarM = () => {
         >
           Anunciar
         </S.anunciar>
-        {modal && <Anuncio modal={modal} closeModal={setModal} />}
+        {modal && (
+          <Anuncio
+            modal={modal}
+            closeModal={setModal}
+            handleGetAllAdverts={handleGetUserAdverts}
+          />
+        )}
       </S.divrigth>
     </S.header>
   );

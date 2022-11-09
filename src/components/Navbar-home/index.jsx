@@ -9,7 +9,7 @@ import Search from "../../assets/search.svg";
 import Anuncio from "../Anuncio";
 import * as S from "./styles";
 
-export const Navbar = () => {
+export const Navbar = ({ handleGetAllAdverts }) => {
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
@@ -44,7 +44,10 @@ export const Navbar = () => {
             <S.caret></S.caret>
             {isOpen ? (
               <S.list onMouseEnter={showDrop}>
-                <li onClick={() => [navigate("/meusanuncios")]}>
+                <li
+                  style={{ marginBottom: 5 }}
+                  onClick={() => [navigate("/meusanuncios")]}
+                >
                   Meus Anúncios
                 </li>
                 <li onClick={() => [deslogar(), navigate("/")]}>Sair</li>
@@ -60,7 +63,14 @@ export const Navbar = () => {
       >
         Anunciar
       </S.anunciar>
-      {modal && <Anuncio modal={modal} closeModal={setModal} disable={true} />}
+      {modal && (
+        <Anuncio
+          modal={modal}
+          closeModal={setModal}
+          disable={true}
+          handleGetAllAdverts={handleGetAllAdverts}
+        />
+      )}
     </S.header>
   );
 };

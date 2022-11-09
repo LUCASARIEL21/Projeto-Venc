@@ -5,6 +5,11 @@ const userApiClient = axios.create({
   baseURL: import.meta.env.VITE_USER_SERVICE_API,
 });
 
-addTokenToRequest(userApiClient);
+const vencApiClient = axios.create({
+  baseURL: import.meta.env.VITE_VENC_API,
+});
 
-export { userApiClient };
+addTokenToRequest(userApiClient);
+addTokenToRequest(vencApiClient);
+
+export { userApiClient, vencApiClient };
