@@ -4,10 +4,10 @@ import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import EditIcon from "@mui/icons-material/Edit";
 import * as S from "./styles";
 import { deleteAdverts } from "../../services/adverts";
 import { ToastContainer, toast } from "react-toastify";
+import { EditModal } from "./EditModal";
 
 const AnunciosM = ({ handleGetUserAdverts, userAdverts }) => {
   const removeAdvert = async (id) => {
@@ -56,14 +56,11 @@ const AnunciosM = ({ handleGetUserAdverts, userAdverts }) => {
                   gap: "10px",
                 }}
               >
-                <S.editButton>
-                  <EditIcon style={{ color: "white" }} />
-                  <h5 style={{ textAlign: "center", fontSize: "13px" }}>
-                    Editar
-                  </h5>
-                </S.editButton>
+                <EditModal
+                  handleGetUserAdverts={handleGetUserAdverts}
+                  advert={advert}
+                />
                 <S.removeButton onClick={() => removeAdvert(advert.id)}>
-                  <EditIcon style={{ color: "white" }} />
                   <h5 style={{ textAlign: "center", fontSize: "13px" }}>
                     Remover
                   </h5>

@@ -58,24 +58,8 @@ export const divorder = styled.div`
 
 export const txt = styled.h1`
   text-align: left;
-  font-size: 12px;
+  font-size: 13px;
   padding: 5px;
-`;
-
-export const divmenu = styled.div`
-  height: 2rem;
-  width: 9rem;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: space-between;
-  border-radius: 0.5em;
-  padding: 1em;
-  color: black;
-  position: relative;
-  cursor: pointer;
-  background: white;
-  opacity: 0.8;
 `;
 
 export const caret = styled.div`

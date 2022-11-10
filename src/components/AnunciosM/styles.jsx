@@ -15,17 +15,6 @@ export const divCategory = styled.div`
   color: #000000;
 `;
 
-export const editButton = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-  border: none;
-  color: white;
-  background-color: limegreen;
-  padding: 10px;
-  cursor: pointer;
-`;
-
 export const removeButton = styled.div`
   cursor: pointer;
   display: flex;

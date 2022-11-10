@@ -11,15 +11,12 @@ import * as S from "./styles";
 
 export const Navbar = ({ handleGetAllAdverts }) => {
   const navigate = useNavigate();
-
+  const userData = localStorage.getItem("userData");
   const [modal, setModal] = useState(false);
 
   const [isOpen, setIsOpen] = useState(true);
   const showDrop = () => {
-    setIsOpen(true);
-  };
-  const hideDrop = () => {
-    setIsOpen(false);
+    setIsOpen(!isOpen);
   };
 
   const deslogar = () => {
@@ -38,12 +35,12 @@ export const Navbar = ({ handleGetAllAdverts }) => {
       </S.divsearch>
       <S.divrigth>
         <S.divdrop>
-          <S.divmenu onMouseEnter={showDrop} onMouseLeave={hideDrop}>
+          <S.divmenu onClick={showDrop}>
             <S.user src={User} alt="user" />
-            Usuário
+            {String(JSON.parse(userData).name).split(" ")[0]}
             <S.caret></S.caret>
             {isOpen ? (
-              <S.list onMouseEnter={showDrop}>
+              <S.list>
                 <li
                   style={{ marginBottom: 5 }}
                   onClick={() => [navigate("/meusanuncios")]}

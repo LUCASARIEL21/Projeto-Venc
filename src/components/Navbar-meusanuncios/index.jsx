@@ -8,17 +8,13 @@ import Anuncio from "../Anuncio";
 
 export const NavbarM = ({ handleGetUserAdverts }) => {
   const navigate = useNavigate();
-
+  const userData = localStorage.getItem("userData");
   const [modal, setModal] = useState(false);
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpenDrop, setIsOpenDrop] = useState(true);
 
   const showDrop = () => {
-    setIsOpen(true);
-  };
-
-  const hideDrop = () => {
-    setIsOpen(false);
+    setIsOpenDrop(!isOpenDrop);
   };
 
   const deslogar = () => {
@@ -39,12 +35,12 @@ export const NavbarM = ({ handleGetUserAdverts }) => {
       <S.divrigth>
         <S.txt>Meus Anúncios</S.txt>
         <S.divdrop>
-          <S.divmenu onMouseEnter={showDrop} onMouseLeave={hideDrop}>
+          <S.divmenu onClick={showDrop}>
             <S.user src={User} alt="user" />
-            Usuário
+            {String(JSON.parse(userData).name).split(" ")[0]}
             <S.caret></S.caret>
-            {isOpen ? (
-              <S.list onMouseEnter={showDrop}>
+            {isOpenDrop ? (
+              <S.list>
                 <li
                   style={{ marginBottom: 5 }}
                   onClick={() => [navigate("/home")]}

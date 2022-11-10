@@ -39,3 +39,8 @@ export const deleteAdverts = async (id) => {
   const response = await vencApiClient.delete(`/adverts/${id}`);
   return response.data;
 };
+
+export const editAdverts = async (id, data) => {
+  const response = await vencApiClient.put(`/adverts/${id}`, data);
+  return response.data;
+};

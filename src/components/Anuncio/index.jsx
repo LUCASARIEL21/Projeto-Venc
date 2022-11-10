@@ -96,18 +96,20 @@ export const Anuncio = ({ closeModal, handleGetAllAdverts, modal }) => {
           onChange={(e) => handleSetData("price", e.target.value)}
         />
         <S.txtfoto>Foto</S.txtfoto>
-        <S.foto onClick={uploadFiles}>
-          <PhotoCameraIcon />
-          Adicionar fotos JPEG e PNG
-          <input
-            id="File"
-            type="file"
-            style={{ display: "none" }}
-            onChange={handleSetImage}
-            accept="image/jpeg,image/png"
-          />
-        </S.foto>
-        <img src={image.preview} height="100" width="100" />
+        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+          <S.foto onClick={uploadFiles}>
+            <PhotoCameraIcon />
+            Adicionar fotos JPEG e PNG
+            <input
+              id="File"
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleSetImage}
+              accept="image/jpeg,image/png"
+            />
+          </S.foto>
+          <img src={image.preview} height="200" width="300" />
+        </div>
         <S.txtloc>Localização</S.txtloc>
         <S.inploc
           type="number"
