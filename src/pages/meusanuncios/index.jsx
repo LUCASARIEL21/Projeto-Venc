@@ -6,10 +6,13 @@ import * as C from "./styles";
 
 const Meusanuncios = () => {
   const [userAdverts, setUserAdverts] = useState([]);
+  const [loadedData, setLoadedData] = useState(false);
 
   const handleGetUserAdverts = async () => {
+    setLoadedData(false);
     const response = await getUserAdverts();
     setUserAdverts(response);
+    setLoadedData(true);
   };
 
   useEffect(() => {
@@ -22,6 +25,7 @@ const Meusanuncios = () => {
       <AnunciosM
         handleGetUserAdverts={handleGetUserAdverts}
         userAdverts={userAdverts}
+        loadedData={loadedData}
       />
     </C.Container>
   );

@@ -12,10 +12,13 @@ import { MenuItem, Select } from "@mui/material";
 const Home = () => {
   const [adverts, setAdverts] = useState([]);
   const [orderBy, setOrderBy] = useState({ sortByPrice: "MR" });
+  const [loadedData, setLoadedData] = useState(false);
 
   const handleGetAllAdverts = async (filters) => {
+    setLoadedData(false);
     const response = await getAllAdverts(filters);
     setAdverts(response);
+    setLoadedData(true);
   };
 
   useEffect(() => {
@@ -57,7 +60,7 @@ const Home = () => {
               </Select>
             </C.divorder>
           </C.divra>
-          <Anuncios adverts={adverts.data} />
+          <Anuncios adverts={adverts.data} loadedData={loadedData} />
         </C.divright>
       </C.Container>
       <ToastContainer style={{ zIndex: 100 }} />
