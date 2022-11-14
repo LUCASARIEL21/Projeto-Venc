@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +8,9 @@ import Search from "../../assets/search.svg";
 
 import Anuncio from "../Anuncio";
 import * as S from "./styles";
+import { debounce } from "@mui/material";
 
-export const Navbar = ({ handleGetAllAdverts }) => {
+export const Navbar = ({ handleGetAllAdverts, setFilterText }) => {
   const navigate = useNavigate();
   const userData = localStorage.getItem("userData");
   const [modal, setModal] = useState(false);
@@ -24,13 +25,22 @@ export const Navbar = ({ handleGetAllAdverts }) => {
     localStorage.removeItem("userData");
   };
 
+  const setDebouncedValue = useCallback(
+    debounce((nextValue) => setFilterText(nextValue), 300),
+    []
+  );
+
   return (
     <S.header>
       <S.divimg>
         <S.logo src={Logo} alt="logo" />
       </S.divimg>
       <S.divsearch>
-        <S.search type="text" placeholder="Pesquise" />
+        <S.search
+          onChange={(e) => setDebouncedValue(e.target.value)}
+          type="text"
+          placeholder="Pesquise"
+        />
         <S.iconsearch src={Search} />
       </S.divsearch>
       <S.divrigth>

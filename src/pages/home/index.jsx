@@ -13,6 +13,7 @@ const Home = () => {
   const [adverts, setAdverts] = useState([]);
   const [orderBy, setOrderBy] = useState({ sortByPrice: "MR" });
   const [loadedData, setLoadedData] = useState(false);
+  const [filterText, setFilterText] = useState("");
 
   const handleGetAllAdverts = async (filters) => {
     setLoadedData(false);
@@ -22,20 +23,26 @@ const Home = () => {
   };
 
   useEffect(() => {
-    handleGetAllAdverts();
-  }, []);
-
-  const handleGetByOrderSelected = async ({ sortByPrice }) => {
-    setOrderBy({ sortByPrice });
-    if (sortByPrice !== "MR") {
-      return await handleGetAllAdverts({ sortByPrice });
-    }
-    await handleGetAllAdverts();
-  };
+    const getFiltered = async () => {
+      if (orderBy.sortByPrice !== "MR") {
+        return await handleGetAllAdverts({
+          orderBy,
+          title: filterText,
+        });
+      }
+      await handleGetAllAdverts({
+        title: filterText,
+      });
+    };
+    getFiltered();
+  }, [filterText, orderBy]);
 
   return (
     <C.page>
-      <Navbar handleGetAllAdverts={handleGetAllAdverts} />
+      <Navbar
+        handleGetAllAdverts={handleGetAllAdverts}
+        setFilterText={setFilterText}
+      />
       <C.Container>
         <C.divleft>
           <Filter handleGetAllAdverts={handleGetAllAdverts} />
@@ -50,9 +57,7 @@ const Home = () => {
               <Select
                 value={orderBy.sortByPrice}
                 style={{ backgroundColor: "white" }}
-                onChange={(e) =>
-                  handleGetByOrderSelected({ sortByPrice: e.target.value })
-                }
+                onChange={(e) => setOrderBy({ sortByPrice: e.target.value })}
               >
                 <MenuItem value={"MR"}>Mais recente</MenuItem>
                 <MenuItem value={"DESC"}>{"Maior preço"}</MenuItem>
