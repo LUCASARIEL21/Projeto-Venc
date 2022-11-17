@@ -3,6 +3,7 @@ import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo_venc.svg";
 import { registerUser } from "../../services/user";
+import { toast } from "react-toastify";
 
 const Cadastro = () => {
   const [email, setEmail] = useState("");
@@ -23,7 +24,7 @@ const Cadastro = () => {
 
     try {
       await registerUser({ email, password: senha, name });
-      window.alert("Usuário cadatrado com sucesso!");
+      toast.success("Usuário cadatrado com sucesso!");
       navigate("/");
     } catch (error) {
       if (error?.response?.status == 400) {
